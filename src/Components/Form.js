@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Form = ({book, setBook}) => { // recibimos las props desde App.js
+const Form = ({book, setBook, setListUpdated}) => { // recibimos las props desde App.js
 
     const handleChange = e => {
         setBook({
@@ -13,7 +13,8 @@ const Form = ({book, setBook}) => { // recibimos las props desde App.js
     // titulo, autor y edicion son nombre declarados en App.js como objeto {}
     let{titulo, autor, edicion} = book // guardando los datos en variables para poderlas utilizar mas adelante
 
-    const handleSubmit = () => {
+    const handleSubmit = e => {
+        e.preventDefault(); // evita que se recarga la página al enviar los datos y lo hace reactivo
         edicion = parseInt(edicion, 10) // convertir a entero base 10
         // validacion de los campos
         if (titulo === '' || autor === '' || edicion <= 0) { // convertir de string a entero
@@ -38,6 +39,7 @@ const Form = ({book, setBook}) => { // recibimos las props desde App.js
             edicion: 0
         })
         // mostrar en lista renderiza solo al parecer]
+        setListUpdated(true);
     }
 
     return (
